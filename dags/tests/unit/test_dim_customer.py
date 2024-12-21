@@ -1,7 +1,7 @@
 import pytest
 import polars as pl
 from polars.testing import assert_frame_equal
-from etl.silver import dim_customer
+from dags.etl.silver import dim_customer
 
 
 # Sample data for testing

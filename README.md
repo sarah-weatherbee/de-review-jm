@@ -55,9 +55,9 @@ Steps:
 # setup input data
 python ./setup/create_input_data.py
 # run pipeline
-python de_project/run_pipeline.py
+python dags/run_pipeline.py
 # run tests
-python -m pytest de_project/tests/unit/test_dim_customer.py
+python -m pytest dags/tests/unit/test_dim_customer.py
 ```
 
 ### Option 2: Run locally
@@ -70,6 +70,7 @@ Steps:
 ```bash
 git clone https://github.com/josephmachado/de_project.git
 cd de_project 
+rm -rf env
 python -m venv ./env # create a virtual env
 source env/bin/activate # use virtual environment
 pip install -r requirements.txt
@@ -81,8 +82,8 @@ jupyter lab
 # setup input data
 python ./setup/create_input_data.py
 # run pipeline
-python de_project/run_pipeline.py
+python dags/run_pipeline.py
 # run tests
-python -m pytest de_project/tests/unit/test_dim_customer.py
+python -m pytest dags/tests/unit/test_dim_customer.py
 ```
 
