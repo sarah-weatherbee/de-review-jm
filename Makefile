@@ -5,7 +5,7 @@ docker-spin-up:
 	docker compose build && docker compose up airflow-init && docker compose up --build -d 
 
 perms:
-	sudo mkdir -p logs plugins temp dags tests data visualization && sudo chmod -R u=rwx,g=rwx,o=rwx logs plugins temp dags tests data visualization tpch.db metadata.db
+	sudo mkdir -p logs plugins temp dags tests data visualization && sudo chmod -R u=rwx,g=rwx,o=rwx logs plugins temp dags tests data visualization 
 
 do-sleep:
 	sleep 30
@@ -35,7 +35,7 @@ type:
 	docker exec webserver mypy --ignore-missing-imports /opt/airflow
 
 lint: 
-	docker exec webserver flake8 /opt/airflow/dags
+	docker exec webserver flake8 --exclude=.ipynb_checkpoints /opt/airflow/dags
 
 ci: isort format type lint pytest
 
