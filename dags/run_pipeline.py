@@ -1,7 +1,7 @@
 from etl.bronze import customer, lineitem, nation, orders, region
-from etl.silver import dim_customer, fct_lineitem, fct_orders
 from etl.gold.obt import wide_lineitem, wide_orders
 from etl.gold.pre_aggregated import customer_outreach_metrics
+from etl.silver import dim_customer, fct_lineitem, fct_orders
 
 
 def create_customer_outreach_metrics():
@@ -13,7 +13,9 @@ def create_customer_outreach_metrics():
     region_df = region.create_dataset()
 
     # Create silver tables
-    dim_customer_df = dim_customer.create_dataset(customer_df, nation_df, region_df)
+    dim_customer_df = dim_customer.create_dataset(
+        customer_df, nation_df, region_df
+    )
     fct_lineitem_df = fct_lineitem.create_dataset(lineitem_df)
     fct_orders_df = fct_orders.create_dataset(orders_df)
 

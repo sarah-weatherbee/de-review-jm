@@ -1,7 +1,7 @@
 import json
-
 import sqlite3
 from datetime import datetime
+
 
 def get_latest_run_metrics():
     # Connect to SQLite database

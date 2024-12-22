@@ -1,7 +1,7 @@
 import json
-import polars as pl
 
-from utils.metadata import get_latest_run_metrics, insert_run_metrics
+import polars as pl
+from utils.metadata import get_latest_run_metrics
 
 
 def create_dataset(wide_lineitem, wide_orders):
@@ -10,7 +10,9 @@ def create_dataset(wide_lineitem, wide_orders):
     )
     return (
         wide_orders.join(order_lineitem_metrics, on="order_key", how="left")
-        .group_by(pl.col("customer_key"), pl.col("name").alias("customer_name"))
+        .group_by(
+            pl.col("customer_key"), pl.col("name").alias("customer_name")
+        )
         .agg(
             pl.min("totalprice").alias("min_order_value"),
             pl.max("totalprice").alias("max_order_value"),
@@ -32,7 +34,9 @@ def check_no_duplicates(customer_outreach_metrics_df):
     # check uniqueness
     if (
         customer_outreach_metrics_df.filter(
-            customer_outreach_metrics_df.select(pl.col("customer_key")).is_duplicated()
+            customer_outreach_metrics_df.select(
+                pl.col("customer_key")
+            ).is_duplicated()
         ).shape[0]
         > 0
     ):
@@ -43,10 +47,14 @@ def check_variance(customer_outreach_metrics_df, perc_threshold=5):
     prev_metric = get_latest_run_metrics()
     if prev_metric is None or len(prev_metric) == 0:
         return
-    prev_metric['sum_avg_order_value'] = int(float(prev_metric['sum_avg_order_value']))
+    prev_metric['sum_avg_order_value'] = int(
+        float(prev_metric['sum_avg_order_value'])
+    )
     curr_metric = json.loads(
         customer_outreach_metrics_df.select(
-            pl.col("avg_num_items_per_order").alias("sum_avg_num_items_per_order"),
+            pl.col("avg_num_items_per_order").alias(
+                "sum_avg_num_items_per_order"
+            ),
             pl.col("avg_order_value").cast(int).alias("sum_avg_order_value"),
         )
         .sum()
@@ -55,7 +63,9 @@ def check_variance(customer_outreach_metrics_df, perc_threshold=5):
     comparison = {}
     for key in curr_metric:
         if key in prev_metric:
-            comparison[key] = percentage_difference(curr_metric[key], prev_metric[key])
+            comparison[key] = percentage_difference(
+                curr_metric[key], prev_metric[key]
+            )
 
     for k, v in comparison.items():
         if v >= perc_threshold:

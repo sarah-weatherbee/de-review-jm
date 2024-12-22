@@ -1,6 +1,7 @@
-import pytest
 import polars as pl
+import pytest
 from polars.testing import assert_frame_equal
+
 from dags.etl.silver import dim_customer
 
 
