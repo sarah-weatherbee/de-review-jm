@@ -1,14 +1,7 @@
-import csv
-import os
 from datetime import datetime, timedelta
-
-import requests
 
 from airflow import DAG
 from airflow.decorators import task
-from airflow.operators.bash import BashOperator
-from cuallee import Check, CheckLevel
-import polars as pl
 from airflow.operators.dummy import DummyOperator
 from run_pipeline import create_customer_outreach_metrics
 
