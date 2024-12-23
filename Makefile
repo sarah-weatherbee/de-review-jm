@@ -10,7 +10,10 @@ perms:
 do-sleep:
 	sleep 30
 
-up: perms docker-spin-up do-sleep 
+create-data:
+	docker exec -ti scheduler python /opt/airflow/setup/create_input_data.py
+
+up: perms docker-spin-up do-sleep create-data
 
 down:
 	docker compose down
