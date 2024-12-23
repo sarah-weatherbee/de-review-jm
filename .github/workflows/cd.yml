@@ -15,3 +15,4 @@ jobs:
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           SOURCE: "./"
           TARGET: "/home/ubuntu/de_project/"
+          ARGS: "-v"  # Enable verbose output for rsync
