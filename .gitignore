@@ -204,3 +204,7 @@ override.tf.json
 .terraformrc
 terraform.rc
 Footer
+
+*.pem
+.terraform/
+.terraform.lock.hcl
