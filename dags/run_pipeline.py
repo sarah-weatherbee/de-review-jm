@@ -34,4 +34,5 @@ def create_customer_outreach_metrics():
 
 
 if __name__ == "__main__":
+    # Print output
     print(create_customer_outreach_metrics().limit(10))
