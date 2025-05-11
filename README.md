@@ -1,3 +1,6 @@
+# Review of data engineering concepts
+
+
 * [Build a data engineering project, with step-by-step instructions](#build-a-data-engineering-project-with-step-by-step-instructions)
      * [Data used](#data-used)
      * [Architecture](#architecture)
@@ -13,7 +16,7 @@
   [![Live workshop](https://img.youtube.com/vi/bfiOLwp1aWM/0.jpg)](https://www.youtube.com/live/bfiOLwp1aWM)
 
 
-## Data used 
+## Data used
 
 Let's assume we are working with a car part seller database (tpch). The data is available in a duckdb database. See the data model below:
 
@@ -69,7 +72,7 @@ Steps:
 3. Start Jupyter lab and run the `setup-data-project.ipynb` notebook that goes over how to create a data pipeline.
 ```bash
 git clone https://github.com/josephmachado/de_project.git
-cd de_project 
+cd de_project
 rm -rf env
 python -m venv ./env # create a virtual env
 source env/bin/activate # use virtual environment
