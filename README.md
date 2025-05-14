@@ -1,5 +1,6 @@
 # Review of data engineering concepts
-
+### Lesson by the inimitable Joseph Machado
+-----------
 
 * [Build a data engineering project, with step-by-step instructions](#build-a-data-engineering-project-with-step-by-step-instructions)
      * [Data used](#data-used)
